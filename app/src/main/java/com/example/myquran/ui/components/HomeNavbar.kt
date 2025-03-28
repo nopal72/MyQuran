@@ -28,6 +28,7 @@ import com.example.myquran.R
 import com.example.myquran.ui.theme.GreenMint
 import com.example.myquran.ui.theme.GreenNavy
 import com.example.myquran.ui.theme.MyQuranTheme
+import com.example.myquran.utils.getTodayDate
 
 @Composable
 fun HomeNavbar() {
@@ -56,7 +57,7 @@ fun HomeNavbar() {
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = "Senin, 24 Maret 2025",
+                    text = getTodayDate(),
                     color = Color.White,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold
