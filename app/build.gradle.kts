@@ -64,4 +64,7 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.logging.interceptor)
+
+//    LiveData
+    implementation(libs.androidx.runtime.livedata)
 }
