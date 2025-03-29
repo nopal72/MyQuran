@@ -56,10 +56,10 @@ data class Data(
 	val nama: String,
 
 	@field:SerializedName("audioFull")
-	val audioFull: AudioFull,
+	val audioFull: DetailAudioFull,
 
 	@field:SerializedName("suratSebelumnya")
-	val suratSebelumnya: SuratSebelumnya,
+	val suratSebelumnya: Any?,
 
 	@field:SerializedName("tempatTurun")
 	val tempatTurun: String,
@@ -74,7 +74,7 @@ data class Data(
 	val deskripsi: String,
 
 	@field:SerializedName("suratSelanjutnya")
-	val suratSelanjutnya: SuratSelanjutnya,
+	val suratSelanjutnya: Any?,
 
 	@field:SerializedName("nomor")
 	val nomor: Int,

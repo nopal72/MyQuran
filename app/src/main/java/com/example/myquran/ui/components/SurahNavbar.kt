@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
@@ -22,7 +21,13 @@ import com.example.myquran.ui.theme.GreenMint
 import com.example.myquran.ui.theme.GreenNavy
 
 @Composable
-fun SurahNavbar(){
+fun SurahNavbar(
+    nama: String,
+    namaLatin: String,
+    jumlahAyat: Int,
+    tempatTurun: String,
+    arti: String
+){
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -31,8 +36,7 @@ fun SurahNavbar(){
                 brush = Brush.verticalGradient(colors = listOf(GreenMint, GreenNavy)),
                 shape = RoundedCornerShape(12.dp)
             )
-            .padding(16.dp)
-            .height(120.dp),
+            .padding(16.dp),
         Alignment.Center
     ) {
         Column(
@@ -40,31 +44,30 @@ fun SurahNavbar(){
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Al-Fatihah",
+                text = nama,
                 color = Color.White,
-                fontSize = 24.sp,
+                fontSize = 32.sp,
                 fontWeight = FontWeight.Bold
             )
             Text(
-                text = "الفاتحة",
+                text = namaLatin,
                 color = Color.White,
-                fontSize = 20.sp,
+                fontSize = 28.sp,
+            )
+            Text(
+                text = "(${arti})",
+                color = Color.White,
+                fontSize = 12.sp,
             )
             Row {
                 Text(
-                    text = "Pembukaan",
+                    text = tempatTurun,
                     color = Color.White,
                     fontSize = 12.sp,
                 )
                 Text(text = "|", color = Color.White, fontSize = 12.sp, modifier = Modifier.padding(horizontal = 4.dp))
                 Text(
-                    text = "Mekah",
-                    color = Color.White,
-                    fontSize = 12.sp,
-                )
-                Text(text = "|", color = Color.White, fontSize = 12.sp, modifier = Modifier.padding(horizontal = 4.dp))
-                Text(
-                    text = "7 Ayat",
+                    text = "$jumlahAyat Ayat",
                     color = Color.White,
                     fontSize = 12.sp,
                 )
@@ -76,5 +79,11 @@ fun SurahNavbar(){
 @Preview(showBackground = true)
 @Composable
 fun SurahNavbarPreview(){
-    SurahNavbar()
+    SurahNavbar(
+        nama = "الفاتحة",
+        namaLatin = "Al-Fatihah",
+        jumlahAyat = 7,
+        tempatTurun = "Mekah",
+        arti = "Pembukaan"
+    )
 }

@@ -1,6 +1,7 @@
 package com.example.myquran.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -26,7 +27,7 @@ import com.example.myquran.ui.theme.GreenBase
 import androidx.compose.ui.text.font.FontWeight.Companion as FontWeight1
 
 @Composable
-fun ItemSurat(surat: DataItem) {
+fun ItemSurat(surat: DataItem, onItemClick: () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -40,6 +41,7 @@ fun ItemSurat(surat: DataItem) {
                 ),
                 shape = RoundedCornerShape(12.dp)
             )
+            .clickable { onItemClick() }
             .padding(16.dp),
         contentAlignment = Alignment.Center
     ) {
@@ -114,7 +116,10 @@ val surat = DataItem(
 @Preview(showBackground = true)
 @Composable
 fun ItemSuratPreview(){
-    ItemSurat(surat)
+    ItemSurat(
+        surat,
+        onItemClick = {}
+    )
 }
 
 

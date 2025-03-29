@@ -17,7 +17,6 @@
         <activity
             android:name=".ui.page.main.MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.MyQuran">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,6 +24,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.page.detailSurat.DetailSuratActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MyQuran" />
     </application>
 
 </manifest>

@@ -22,11 +22,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.myquran.R
+import com.example.myquran.data.remote.response.AyatItem
 import com.example.myquran.ui.theme.GreenArmy
 import com.example.myquran.ui.theme.GreenBase
 
 @Composable
-fun ItemAyat(){
+fun ItemAyat(ayat: AyatItem) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -43,7 +44,9 @@ fun ItemAyat(){
             .padding(16.dp),
     ) {
         Column(
-            modifier = Modifier.fillMaxWidth().padding(8.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp),
             verticalArrangement = Arrangement.SpaceBetween
         ) {
             Row (
@@ -51,13 +54,13 @@ fun ItemAyat(){
                 verticalAlignment = Alignment.CenterVertically
             ){
                 Text(
-                    text = "1",
+                    text = "${ayat.nomorAyat}",
                     color = Color.White,
                     fontSize = 20.sp,
                     modifier = Modifier.padding(end = 8.dp)
                 )
                 Text(
-                    text = "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ",
+                    text = ayat.teksArab,
                     color = Color.White,
                     fontSize = 28.sp,
                     textAlign = TextAlign.End,
@@ -65,7 +68,7 @@ fun ItemAyat(){
                 )
             }
             Text(
-                text = "bismillāhir-raḥmānir-raḥīm(i).",
+                text = ayat.teksLatin,
                 color = Color.White.copy(alpha = 0.7f),
                 fontSize = 12.sp,
                 textAlign = TextAlign.End,
@@ -77,7 +80,7 @@ fun ItemAyat(){
                 fontSize = 12.sp,
             )
             Text(
-                text = "Dengan nama Allah Yang Maha Pengasih, Maha Penyayang.",
+                text = ayat.teksIndonesia,
                 color = Color.White.copy(alpha = 0.7f),
                 fontSize = 12.sp,
             )
@@ -93,8 +96,22 @@ fun ItemAyat(){
     }
 }
 
+val ayat = AyatItem(
+    nomorAyat = 1,
+    teksArab = "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
+    teksLatin = "Bismillaahhir Rahmaanir Raheem",
+    audio = com.example.myquran.data.remote.response.Audio(
+        jsonMember01 = "",
+        jsonMember02 = "",
+        jsonMember03 = "",
+        jsonMember04 = "",
+        jsonMember05 = ""
+    ),
+    teksIndonesia = "Bismillaahhir Rahmaanir Raheem"
+)
+
 @Preview(showBackground = true)
 @Composable
 fun ItemAyatPreview(){
-    ItemAyat()
+    ItemAyat(ayat)
 }

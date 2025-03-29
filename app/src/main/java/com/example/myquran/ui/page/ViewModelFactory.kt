@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.myquran.data.SuratRepository
 import com.example.myquran.data.di.Injection
+import com.example.myquran.ui.page.detailSurat.DetailSuratViewModel
 import com.example.myquran.ui.page.main.MainViewModel
 
 class ViewModelFactory(private val suratRepository: SuratRepository): ViewModelProvider.NewInstanceFactory() {
@@ -13,6 +14,9 @@ class ViewModelFactory(private val suratRepository: SuratRepository): ViewModelP
         return when {
                 modelClass.isAssignableFrom(MainViewModel::class.java)->{
                     MainViewModel(suratRepository) as T
+                }
+                modelClass.isAssignableFrom(DetailSuratViewModel::class.java)->{
+                    DetailSuratViewModel(suratRepository) as T
                 }
             else -> throw IllegalArgumentException("Unknown model class: "+ modelClass.name)
         }

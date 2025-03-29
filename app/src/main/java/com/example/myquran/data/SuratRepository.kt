@@ -2,6 +2,7 @@ package com.example.myquran.data
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.myquran.data.remote.response.DetailSuratResponse
 import com.example.myquran.data.remote.response.SuratResponse
 import com.example.myquran.data.remote.retrofit.ApiService
 import retrofit2.Call
@@ -28,6 +29,32 @@ class SuratRepository private constructor(
             }
 
             override fun onFailure(call: Call<SuratResponse>, t: Throwable) {
+                result.value = Result.Error(t.toString())
+            }
+        })
+        return result
+    }
+
+    fun getDetailSurat(nomor: Int): MutableLiveData<Result<DetailSuratResponse>> {
+        val result = MutableLiveData<Result<DetailSuratResponse>>()
+        result.value = Result.Loading
+        val client = apiService.getDetailSurat(nomor)
+        client.enqueue(object: Callback<DetailSuratResponse>{
+            override fun onResponse(
+                call: Call<DetailSuratResponse>,
+                response: Response<DetailSuratResponse>
+            ) {
+                if (response.isSuccessful){
+                    val body = response.body()
+                    body?.let {
+                        result.value = Result.Success(it)
+                    }
+                }else{
+                    result.value = Result.Error(response.message())
+                }
+            }
+
+            override fun onFailure(call: Call<DetailSuratResponse>, t: Throwable) {
                 result.value = Result.Error(t.toString())
             }
         })
